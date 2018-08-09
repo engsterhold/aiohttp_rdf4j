@@ -1,0 +1,139 @@
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+# 
+#   http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+
+
+Vagrant.configure(2) do |config|
+
+  config.vm.box = "ubuntu/trusty64"
+  config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.name = "rdf4j-test-server"
+    vb.memory = "4096"
+	vb.cpus = 4
+  end
+
+  config.vm.network :private_network, ip: "192.168.33.10"
+  config.vm.hostname = "rdf4j-test-server"
+
+  config.vm.provision "shell", inline: <<-SHELL
+  
+    ###set -x  ## turn on command echo with expanded variables
+    # List of dependency versions
+    export RDF4J_VERSION=2.3.2
+
+    mavenRepoUrl=http://repo1.maven.org/maven2/
+
+    echo "Updating host file with permanent ip"
+	sudo sed -i 's/127.0.1.1/192.168.33.10/' /etc/hosts
+    cat >> /etc/hosts <<EOF
+192.168.33.10 zoo1 zoo2 zoo3
+EOF
+
+
+sudo -E apt-get -qq update
+    
+    echo "Installing Java installer..."
+    sudo -E add-apt-repository ppa:webupd8team/java || exit $?
+    sudo -E apt-get -qq update || exit $?
+    echo debconf shared/accepted-oracle-license-v1-1 select true | \
+      sudo -E /usr/bin/debconf-set-selections
+    echo debconf shared/accepted-oracle-license-v1-1 seen true | \
+      sudo -E /usr/bin/debconf-set-selections
+    sudo mkdir --parents /var/cache/oracle-jdk8-installer || exit $?
+    echo verbose=off >> /var/cache/oracle-jdk8-installer/wgetrc || exit $?
+
+    echo "Installing Java..."
+    sudo -E apt-get -qq install -y oracle-java8-installer || exit $?
+    sudo ln --force -s /usr/lib/jvm/java-8-oracle/ /usr/lib/jvm/default-java
+    
+    echo "Installing tomcat7..."
+    sudo -E apt-get install -y tomcat7  || exit $?
+    
+    echo "Installing Unzip..."
+    apt-get install unzip || exit $?
+
+    echo "Setting up environment..."
+    export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+    export PATHADD=$JAVA_HOME/bin
+    export PATH=$PATH:$PATHADD
+    
+    ######
+    
+    echo "Acquiring and Extracting ..."
+    
+    function echoerr() { printf "%s\n" "$*" >&2; }
+
+    function download {
+      ### curl --fail treat http status >= 400 as an error. --location follow redirects status>=300
+      curl --silent --show-error --fail --location "$@"
+      if [ $? -ne 0 ]; then
+        echoerr "--------------------------"
+        echoerr "-"
+        echoerr "- download failed" "$@"
+        echoerr "-"
+        echoerr "-"   exiting ...
+        echoerr "-"
+        echoerr "--------------------------"
+        exit 800
+      fi
+    }
+    
+
+    echo "Installing RDF4J Server"
+	# creating log dir rdf4j-http-server-${RDF4J_VERSION}
+	sudo mkdir --parents /usr/share/tomcat7/.RDF4J 
+	sudo chown -R tomcat7:tomcat7 /usr/share/tomcat7  
+    sudo ln --force -s /usr/share/tomcat7/.RDF4J/Server/logs /var/log/tomcat7/rdf4j-server
+	rdf4jwar=/var/lib/tomcat7/webapps/rdf4j-server.war
+	if [[ ! -s $rdf4jwar ]] ; then 
+		echo "Downloading RDF4J Server"
+		download --output $rdf4jwar ${mavenRepoUrl}org/eclipse/rdf4j/rdf4j-http-server/${RDF4J_VERSION}/rdf4j-http-server-${RDF4J_VERSION}.war || exit 110
+	fi
+	echo "RDF4J http server deployed at 192.168.33.10:8080/rdf4j-server"
+	
+	echo "Installing RDF4J Workbench"
+	workbench=/var/lib/tomcat7/webapps/rdf4j-workbench.war
+	if [[ ! -s $workbench ]] ; then 
+		echo "Downloading RDF4J Workbench"
+		download --output $workbench ${mavenRepoUrl}org/eclipse/rdf4j/rdf4j-http-workbench/${RDF4J_VERSION}/rdf4j-http-workbench-${RDF4J_VERSION}.war || exit 111
+	fi
+	echo "RDF4J workbench deployed at 192.168.33.10:8080/rdf4j-workbench"
+	
+	
+	# before continueing, wait for tomcat7 to deploy wars:
+    waitForDeploy /var/lib/tomcat7/webapps/rdf4j-workbench/WEB-INF/lib/
+    waitForDeploy /var/lib/tomcat7/webapps/rdf4j-server/WEB-INF/lib/
+    
+    
+    sudo chown -R tomcat7:tomcat7 /var/lib/tomcat7/webapps/rdf4j-workbench/WEB-INF/lib/
+	sudo chown -R tomcat7:tomcat7 /var/lib/tomcat7/webapps/rdf4j-server/WEB-INF/lib/
+
+
+
+	
+	# restart tomcat7
+	sudo -E service tomcat7 restart
+	echo "Finished and ready to use!"
+    echo "You can re-apply these settings without losing data by running the command 'vagrant provision'"
+  SHELL
+
+end

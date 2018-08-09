@@ -1,0 +1,154 @@
+@prefix : <http://issg.de/ontologies/phonetic#> .
+@prefix maps: <http://issg.de/maps/vocab#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix geof: <http://www.opengis.net/def/function/geosparql/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix fn: <http://www.w3.org/2005/xpath-functions#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix voc: <http://issg.de/base/vocab#> .
+@prefix historic-language-classification: <http://issg.de/ontologies/historic-language-classification#> .
+@prefix mrs: <http://issg.de/mappings/historic#> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix qb: <http://purl.org/linked-data/cube#> .
+@prefix uom: <http://www.opengis.net/def/uom/OGC/1.0/> .
+@prefix geo-ont: <http://www.geonames.org/ontology#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix geo-pos: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix rank: <http://www.ontotext.com/owlim/RDFRank#> .
+@prefix sesame: <http://www.openrdf.org/schema/sesame#> .
+@prefix luc: <http://www.ontotext.com/owlim/lucene#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+
+<http://issg.de/base/geodata2> {
+	<http://issg.de/base/geodata/0399173b-17ff-4f5b-a140-d184af8ffaf5> a voc:Settlement .
+
+	<http://issg.de/base/geodata/01b80519-763a-4985-8f38-e3872c8c85e0> a voc:Settlement .
+
+	<http://issg.de/base/geodata/02ae9840-af23-4c59-8718-bcf4331108cd> a voc:Settlement .
+
+	<http://issg.de/base/geodata/04956af5-e7a4-4a19-9bb9-486b923f6b74> a voc:Settlement .
+
+	<http://issg.de/base/geodata/01fc6299-9253-4fe9-8a15-8219f9d5ff8b> a voc:Settlement .
+
+	<http://issg.de/base/geodata/01b0ee51-dc93-48b6-805f-3eb1157e4832> a voc:Settlement .
+
+	<http://issg.de/base/geodata/01e051e6-14d0-4e86-901f-9094f9547d6b> a voc:Settlement .
+
+	<http://issg.de/base/geodata/0104cc2c-2ded-4fdd-8a1e-c196df979ba6> a voc:Settlement .
+
+	<http://issg.de/base/geodata/01b45754-294a-4b27-ac0f-69c3da9b533b> a voc:Settlement .
+
+	<http://issg.de/base/geodata/0146974d-d05b-4ce7-81ec-47affb2ab005> a voc:Settlement .
+
+	<http://issg.de/base/geodata/02236f33-73cc-4a33-b3b3-c5dae2bf0cc0> a voc:Settlement .
+
+	<http://issg.de/base/geodata/b945f189-c0d9-460f-8449-b35947319f48> a voc:Settlement .
+
+	<http://issg.de/base/geodata/6bcc78a4-5c10-4156-bb27-eac65ded2234> a <http://www.opengis.net/ont/sf#Point> .
+
+	<http://issg.de/base/geodata/d5ee8705-6fe2-4412-a0f1-fd3811898dc0> a <http://www.opengis.net/ont/sf#Point> .
+
+	<http://issg.de/base/geodata/6ba3b1a7-a84c-4abc-ba37-2304fb8e117b> a <http://www.opengis.net/ont/sf#Point> .
+
+	<http://issg.de/base/geodata/f9941eab-da1e-487d-81fa-644730eba56e> a voc:Settlement .
+
+	<http://issg.de/base/geodata/8fd10e73-c51b-4f0c-a8fd-9ee8547ba10d> a voc:Settlement .
+
+	<http://issg.de/base/geodata/e7a7e47c-e99b-4f1d-ba21-c74505a7840e> a <http://www.opengis.net/ont/sf#Point> .
+
+	<http://issg.de/base/geodata/7a69b944-df18-48cb-9893-aed2324ae193> a voc:Settlement .
+
+	<http://issg.de/base/geodata/53cf391a-98f7-4fac-80cf-ddd3674fc6a1> a voc:Settlement .
+
+	<http://issg.de/base/geodata/0c857c3a-0a31-4b48-a1b7-60f567727eee> a voc:Settlement .
+
+	<http://issg.de/base/geodata/1872520e-5dce-4fdb-b125-267765a977e2> a <http://www.opengis.net/ont/sf#Point> .
+
+	<http://issg.de/base/geodata/01c4dc00-dcd4-4cdc-a469-01c55a69e7a1> a <http://www.opengis.net/ont/sf#Point> .
+
+	<http://issg.de/base/geodata/5ad878ff-9002-4d4b-9d3f-3c2071047374> a <http://www.opengis.net/ont/sf#Point> .
+
+	<http://issg.de/base/geodata/de0bc5c0-7408-4acd-94b5-f1617b638b48> a voc:Settlement .
+
+	<http://issg.de/base/geodata/8910dfe7-b000-4407-b3b8-fd3d2c0e9869> a voc:Settlement .
+
+	<http://issg.de/base/geodata/3d2444df-a639-4327-85f5-e034d0b1cbda> a <http://www.opengis.net/ont/sf#Point> .
+
+	<http://issg.de/base/geodata/4de796ab-0475-4e58-8e2f-302b17cbb125> a voc:Settlement .
+
+	<http://issg.de/base/geodata/2b0a0151-6b50-4db1-9544-442a9117fac3> a <http://www.opengis.net/ont/sf#Point> .
+
+	<http://issg.de/base/geodata/15032a0a-9b23-4337-85d4-046d342b7a72> a <http://www.opengis.net/ont/sf#Point> .
+
+	<http://issg.de/base/geodata/b6af0fdd-45b0-4382-8794-f5c5289b5eaa> a voc:Settlement .
+
+	<http://issg.de/base/geodata/763add54-74e5-45a9-9cd1-27391ad44279> a <http://www.opengis.net/ont/sf#Point> .
+
+	<http://issg.de/base/geodata/b64feadc-16b9-43fd-ab4d-6eb708b880f3> a voc:Settlement .
+
+	<http://issg.de/base/geodata/da2733d4-f52f-4efe-8bda-16043c4f3599> a voc:Settlement .
+
+	<http://issg.de/base/geodata/41d8e3ee-4bdd-41b0-a5b3-00de15a1b3dd> a <http://www.opengis.net/ont/sf#Point> .
+
+	<http://issg.de/base/geodata/92961ef2-8b1c-453a-8255-686ed70124e4> a voc:Settlement .
+
+	<http://issg.de/base/geodata/e9a9ad19-dfa6-4a46-b71b-c8b49870c982> a voc:Settlement .
+
+	<http://issg.de/base/geodata/d0612e46-23bc-41c8-893b-3aac0c42ac35> a voc:Settlement .
+
+	<http://issg.de/base/geodata/f8f98425-a1e0-4149-8b8a-0fc79608d30f> a <http://www.opengis.net/ont/sf#Point> .
+
+	<http://issg.de/base/geodata/76fa5d76-3365-425e-b5dc-eb5c437add0f> a voc:Settlement .
+
+	<http://issg.de/base/geodata/4b4c6133-9bfc-44f5-af7a-de0a9b87cb61> a <http://www.opengis.net/ont/sf#Point> .
+
+	<http://issg.de/base/geodata/225003da-7aec-4366-919e-328b2d89c2c6> a <http://www.opengis.net/ont/sf#Point> .
+
+	<http://issg.de/base/geodata/31e9c8a5-9693-463d-ac58-bbe531be858d> a voc:Settlement .
+
+	<http://issg.de/base/geodata/50fbc7f3-2364-446a-b18a-bbd68ec36993> a <http://www.opengis.net/ont/sf#Point> .
+
+	<http://issg.de/base/geodata/c9bca772-f6ff-4523-9b3d-e007c3f178dc> a <http://www.opengis.net/ont/sf#Point> .
+
+	<http://issg.de/base/geodata/2dede5a8-46ea-46c7-8597-dbd7f0ad8509> a <http://www.opengis.net/ont/sf#Point> .
+
+	<http://issg.de/base/geodata/99e170a4-fadc-4a86-86a8-e3ca7cb6050a> a voc:Settlement .
+
+	<http://issg.de/base/geodata/67c3ae51-a854-4b8e-b5f5-bcdd47f3f1fd> a voc:Settlement .
+
+	<http://issg.de/base/geodata/a2f7be92-5391-4669-a73a-8cdc0818b72d> a voc:Settlement .
+
+	<http://issg.de/base/geodata/b1a26564-da26-4758-ac06-b89ff1df81a0> a <http://www.opengis.net/ont/sf#Point> .
+
+	<http://issg.de/base/geodata/9ca8af37-c931-4f56-a6b3-5bb7796daf07> a voc:Settlement .
+
+	<http://issg.de/base/geodata/1fcbf80f-e63d-4311-83ba-ddaa59e427da> a <http://www.opengis.net/ont/sf#Point> .
+
+	<http://issg.de/base/geodata/08b99615-49e5-4328-8c68-4b94cb6d26f5> a voc:Settlement .
+
+	<http://issg.de/base/geodata/14ac0f86-8b68-4672-a2a9-34ec0afd978d> a voc:Settlement .
+
+	<http://issg.de/base/geodata/9784ba28-abf2-47e8-8d87-e96ad9c501da> a voc:Settlement .
+
+	<http://issg.de/base/geodata/b42fd411-39e6-49ff-b18b-ee728fb3303f> a <http://www.opengis.net/ont/sf#Point> .
+
+	<http://issg.de/base/geodata/d75d1860-2590-4086-b49e-7f0d8e9002be> a voc:Settlement .
+
+	<http://issg.de/base/geodata/79a3569a-87ac-45e8-99a1-c3e14535366e> a voc:Settlement .
+
+	<http://issg.de/base/geodata/d6695873-3918-420a-9176-f4a78fe1a364> a <http://www.opengis.net/ont/sf#Point> .
+
+	<http://issg.de/base/geodata/58a7bd1c-6352-42fe-8589-fcd9bb778169> a <http://www.opengis.net/ont/sf#Point> .
+
+	<http://issg.de/base/geodata/e441535f-d40c-4221-8eef-6eb29bcb8e53> a <http://www.opengis.net/ont/sf#Point> .
+
+	<http://issg.de/base/geodata/fdb8ae28-ce22-4538-9a84-d7170a081116> a <http://www.opengis.net/ont/sf#Point> .
+
+	<http://issg.de/base/geodata/d65ada86-ce3e-4cbf-ae72-c93707c85537> a <http://www.opengis.net/ont/sf#Point> .
+
+	<http://issg.de/base/geodata/2fb4ecad-b20d-4657-a450-a8b937bddaa9> a voc:Settlement .
+
+	<http://issg.de/base/geodata/443b4660-8cc7-45b1-82ff-531eb6d982c9> a voc:Settlement .
+	}
