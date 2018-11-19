@@ -42,6 +42,7 @@ async def async_gen(iterable, interupt=100):
     :param iterable: a iterable without __aiter__
     :return: an async generator for the iterable
     """
+    interupt = 1 if interupt < 1 else interupt
     for n, i in enumerate(iterable):
         if n%interupt==0:
             await asyncio.sleep(0) # not sure. but otherwise the loop does not get interrupted.
