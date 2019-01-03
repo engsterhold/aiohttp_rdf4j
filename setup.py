@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 import sys
 import os
 
-version = '0.5.1'
+version = '0.5.2'
 
 
 def readme():
