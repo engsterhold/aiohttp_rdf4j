@@ -39,7 +39,7 @@ class BinaryQueryResultParser:
 
 
 
-    async def __aiter__(self):
+    def __aiter__(self):
         return self.parse()
 
 

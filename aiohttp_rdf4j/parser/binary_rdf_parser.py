@@ -186,6 +186,6 @@ class BinaryRDFParser:
         return string
 
 
-    async def __aiter__(self):
+    def __aiter__(self):
         return self.parse()
 
