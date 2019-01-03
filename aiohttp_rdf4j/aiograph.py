@@ -6,7 +6,7 @@ from rdflib import Literal, URIRef, BNode, Graph
 from rdflib.plugin import Store
 from rdflib.plugins.serializers.nt import _quoteLiteral
 from aiohttp_rdf4j.utils import Statement
-from aiohttp_rdf4j.parser.binary_rdf_parser import BinaryRDFParser
+from aiohttp_rdf4j.parser import BinaryRDFParser
 from aiohttp_rdf4j.parser import BinaryQueryResultParser
 from typing import (Optional)
 from functools import wraps
